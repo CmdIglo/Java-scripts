@@ -12,7 +12,7 @@
  * spaces. Its also important to note, that my encryption algorithm only supports standard English alphabet ASCII characters.
  * I guess Vigenere didn't know too many other characters either :)
 */
-package test;
+package any;
 import java.util.*;
 
 public class Vigenere {
