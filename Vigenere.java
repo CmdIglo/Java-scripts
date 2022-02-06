@@ -63,21 +63,21 @@ public class Vigenere {
 		
 		//declares variables for the clean-up of the message, so the deletion of spaces in the message
 		char[] clean_satz1 = new char[satz.length];
-	    int last_insert = 0;
+	   	int last_insert = 0;
 	    
-	    //cleans the spaces
-	    for (int i = 0; i < satz.length; i++){
-	        if (i == findIndex(satz, (char) 32)) {
-	            satz[i] = 0xFF;
-	        	i++;
-	        }
-	        clean_satz1[last_insert++] = satz[i];
-	    }
+	    	//cleans the spaces
+	    	for (int i = 0; i < satz.length; i++){
+	       	 	if (i == findIndex(satz, (char) 32)) {
+	            		satz[i] = 0xFF;
+	        		i++;
+	        	}
+	        	clean_satz1[last_insert++] = satz[i];
+	    	}
 		
-	    //because I messed up the cleansing above, the code adds 0s to the end of the cleaned-up String, so these have to be 
-	    //deleted by "list comprehension"
-	    //luckily the number of 0s corresponds to the number of spaces, so thats why we declared a num_spaces before
-	    char[] clean_satz = Arrays.copyOfRange(clean_satz1, 0, clean_satz1.length-num_spaces);
+	    	//because I messed up the cleansing above, the code adds 0s to the end of the cleaned-up String, so these have to be 
+	    	//deleted by "list comprehension"
+	    	//luckily the number of 0s corresponds to the number of spaces, so thats why we declared a num_spaces before
+	    	char[] clean_satz = Arrays.copyOfRange(clean_satz1, 0, clean_satz1.length-num_spaces);
 	    
 		//System.out.println(clean_satz);
 		
@@ -87,17 +87,29 @@ public class Vigenere {
 		//works with the decimal values of characters of the English alphabet in the ASCII table
 		//recognizes capital letters -> pascal-case String as output
 		for (int i = 0; i < clean_satz.length; i++) {
+			
 			if ((int) clean_satz[i] >= 65 && (int) clean_satz[i] <= 90) {
+			
 				if ((int) key[i%key.length] >= 65 && (int) key[i%key.length] <= 90) {
+					
 					clean_satz[i] = (char) ((((((int) clean_satz[i]) - 65) + (((int) key[i%key.length]) - 65)) % 26) + 65);
+				
 				} else {
+				
 					clean_satz[i] = (char) ((((((int) clean_satz[i]) - 65) + (((int) key[i%key.length] - 32) - 65)) % 26) + 65);
+				
 				}
+			
 			} else {
+				
 				if ((int) key[i%key.length] >= 65 && (int) key[i%key.length] <= 90) {
+					
 					clean_satz[i] = (char) ((((((int) clean_satz[i]) - 97) + (((int) key[i%key.length] + 32) - 97)) % 26) + 97);
+				
 				} else {
+				
 					clean_satz[i] = (char) ((((((int) clean_satz[i]) - 97) + (((int) key[i%key.length]) - 97)) % 26) + 97);	
+				
 				}
 			}
 		}
